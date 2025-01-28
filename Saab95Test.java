@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Saab95Test {
-    private Volvo240 car;
+    private Saab95 car;
     @BeforeEach
     public void setUptest () {
-        car = new Volvo240();
+        car = new Saab95();
     }
 
     @Test
