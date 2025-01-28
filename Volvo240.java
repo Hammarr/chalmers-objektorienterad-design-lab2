@@ -27,15 +27,15 @@ public class Volvo240{
     }
 
     public void setColor(Color clr){
-	    color = clr;
+	color = clr;
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1;
+	currentSpeed = 0.1;
     }
 
     public void stopEngine(){
-	    currentSpeed = 0;
+	currentSpeed = 0;
     }
     
     public double speedFactor(){
