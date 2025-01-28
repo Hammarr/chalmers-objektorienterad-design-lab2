@@ -27,15 +27,15 @@ public class Volvo240 extends Car {
     }
 
     public void setColor(Color clr){
-	    color = clr;
+	color = clr;
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1;
+	currentSpeed = 0.1;
     }
 
     public void stopEngine(){
-	    currentSpeed = 0;
+	currentSpeed = 0;
     }
     
     public double speedFactor(){
@@ -45,12 +45,10 @@ public class Volvo240 extends Car {
     @Override
     protected void incrementSpeed(double amount){
 	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
-        //assert(currentSpeed >= 0 && currentSpeed <= enginePower);
     }
 
     @Override
     protected void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-        //assert(currentSpeed >= 0 && currentSpeed <= enginePower);
     }
 }
