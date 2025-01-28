@@ -27,23 +27,23 @@ public class Saab95 extends Car {
     }
 
     public void setColor(Color clr){
-	    color = clr;
+	color = clr;
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1;
+	currentSpeed = 0.1;
     }
 
     public void stopEngine(){
-	    currentSpeed = 0;
+	currentSpeed = 0;
     }
 
     public void setTurboOn(){
-	    turboOn = true;
+	turboOn = true;
     }
 
     public void setTurboOff(){
-	    turboOn = false;
+	turboOn = false;
     }
     
     public double speedFactor(){
