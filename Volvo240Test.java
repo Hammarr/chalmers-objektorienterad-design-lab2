@@ -47,6 +47,7 @@ class Volvo240Test {
         assertEquals(0, car.currentSpeed);
         double previousSpeed = car.currentSpeed;
         car.gas(0.5);
+        assertThrows(IllegalArgumentException.class, () -> car.gas(2));
         assertTrue(car.currentSpeed > previousSpeed);
     }
 
@@ -56,6 +57,7 @@ class Volvo240Test {
         car.gas(0.5);
         double previousSpeed = car.currentSpeed;
         car.brake(0.25);
+        assertThrows(IllegalArgumentException.class, () -> car.brake(2));
         assertTrue(car.currentSpeed < previousSpeed);
     }
 
