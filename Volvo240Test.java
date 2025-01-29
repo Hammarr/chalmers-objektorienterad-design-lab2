@@ -46,16 +46,16 @@ class Volvo240Test {
     void gas() {
         assertEquals(0, car.currentSpeed);
         double previousSpeed = car.currentSpeed;
-        car.gas(10);
+        car.gas(0.5);
         assertTrue(car.currentSpeed > previousSpeed);
     }
 
     @Test
     void brake() {
         assertEquals(0, car.currentSpeed);
-        car.gas(100);
+        car.gas(0.5);
         double previousSpeed = car.currentSpeed;
-        car.brake(50);
+        car.brake(0.5);
         assertTrue(car.currentSpeed < previousSpeed);
     }
 
