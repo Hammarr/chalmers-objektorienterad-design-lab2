@@ -55,7 +55,7 @@ class Volvo240Test {
         assertEquals(0, car.currentSpeed);
         car.gas(0.5);
         double previousSpeed = car.currentSpeed;
-        car.brake(0.5);
+        car.brake(0.25);
         assertTrue(car.currentSpeed < previousSpeed);
     }
 
