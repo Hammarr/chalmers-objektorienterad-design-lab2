@@ -11,19 +11,11 @@ class Saab95Test {
     }
 
     @Test
-    void incrementSpeed() {
-        assertEquals(0, car.currentSpeed);
-        double previousSpeed = car.currentSpeed;
-        car.incrementSpeed(10);
-        assertTrue(car.currentSpeed > previousSpeed);
-    }
-
-    @Test
-    void decrementSpeed() {
-        assertEquals(0, car.currentSpeed);
-        car.incrementSpeed(100);
-        double previousSpeed = car.currentSpeed;
-        car.decrementSpeed(50);
-        assertTrue(car.currentSpeed < previousSpeed);
+    void speedFactor() {
+        car.setTurboOn();
+        double a = car.speedFactor();
+        car.setTurboOff();
+        double b = car.speedFactor();
+        assertTrue(a > b);
     }
 }

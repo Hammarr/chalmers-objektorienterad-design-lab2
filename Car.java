@@ -7,7 +7,7 @@ enum Direction {
 abstract class Car implements Movable {
     protected int nrDoors; // Number of doors on the car
     protected double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
+    protected double currentSpeed = 0; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
 
@@ -15,7 +15,11 @@ abstract class Car implements Movable {
     private double positionX = 0;
     private double positionY = 0;
 
-    public Car() {
+    public Car(String modelName, int nrDoors, double enginePower, Color color) {
+        this.modelName = modelName;
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.color = color;
         stopEngine();
     }
 
@@ -59,20 +63,28 @@ abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
-    protected void incrementSpeed(double amount) {}
+    abstract double speedFactor();
 
-    protected void decrementSpeed(double amount) {}
+    protected void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+    };
+
+    protected void decrementSpeed(double amount){
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    };
 
     public void gas(double amount){
-        if (amount <= 1 && amount >= 0) {
-            incrementSpeed(amount);
+        if(amount < 0 || amount > 1){
+            throw new IllegalArgumentException();
         }
+        incrementSpeed(amount);
     }
 
     public void brake(double amount){
-        if (amount <= 1 && amount >= 0) {
-            decrementSpeed(amount);
+        if(amount < 0 || amount > 1){
+            throw new IllegalArgumentException();
         }
+        decrementSpeed(amount);
     }
 
     public void move() {
