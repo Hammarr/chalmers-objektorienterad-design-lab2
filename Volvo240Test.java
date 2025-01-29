@@ -20,7 +20,7 @@ class Volvo240Test {
     void stopEngine() {
         car.startEngine();
         car.incrementSpeed(100);
-        car.gas(20);
+        car.gas(0.2);
         car.stopEngine();
         assertEquals(0, car.currentSpeed);
     }
