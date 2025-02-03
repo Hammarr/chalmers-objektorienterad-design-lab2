@@ -35,6 +35,14 @@ abstract class Car implements Movable {
         return positionY;
     }
 
+    public void setPositionX(double x) {
+        positionX = x;
+    }
+
+    public void setPositionY(double y) {
+        positionY = y;
+    }
+
     public int getNrDoors () {
         return nrDoors;
     }
