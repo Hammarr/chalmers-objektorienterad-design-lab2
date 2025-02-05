@@ -10,16 +10,18 @@ abstract class Car implements Movable {
     protected double currentSpeed = 0; // The current speed of the car
     protected Color color; // Color of the car
     protected String modelName; // The car model name
+    protected int size;
 
     private Direction currentDirection = Direction.NORTH;
     private double positionX = 0;
     private double positionY = 0;
 
-    public Car(String modelName, int nrDoors, double enginePower, Color color) {
+    public Car(String modelName, int nrDoors, double enginePower, Color color, int size) {
         this.modelName = modelName;
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
+        this.size = size;
         stopEngine();
     }
 
@@ -62,6 +64,8 @@ abstract class Car implements Movable {
     public void setColor (Color clr){
         color = clr;
     }
+
+    public int getSize() { return size; }
 
     public void startEngine () {
         currentSpeed = 0.1;

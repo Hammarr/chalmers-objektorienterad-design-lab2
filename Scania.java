@@ -5,7 +5,7 @@ public class Scania extends Car {
     double trailerDegree = 0;
 
     public Scania() {
-        super("Volvo", 2, 100, Color.GREEN);
+        super("Volvo", 2, 100, Color.GREEN, 10);
     }
 
     public void raise(double angle) {
