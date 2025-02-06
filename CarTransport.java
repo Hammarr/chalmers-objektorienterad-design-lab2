@@ -4,9 +4,9 @@ import java.util.Stack;
 enum RampState {
     Up, Down
 }
-public class CarTransport extends Car {
+public class CarTransport extends TruckWithTrailer {
     private RampState rampStatus = RampState.Down;
-    private Stack<Car> loadedCars = new Stack<>();
+    private Stack<CarTransportTransportable> loadedObjects = new Stack<>();
     private final int capacity = 100;
     private final int minDistanceToLoad = 5;
 
@@ -15,19 +15,17 @@ public class CarTransport extends Car {
     }
 
     public void raise(){
-        if(currentSpeed == 0)
+        if(currentSpeed == 0){
             rampStatus = RampState.Up;
+            allowedToDrive = false;}
     }
 
     public void lower() {
-        if(currentSpeed == 0)
+        if(currentSpeed == 0){
             rampStatus = RampState.Down;
+            allowedToDrive = true;}
     }
 
-    @Override
-    public void gas(double amount){
-        if(rampStatus == RampState.Down){super.gas(amount);}
-    }
     @Override
     double speedFactor() {
         return enginePower * 0.01;
@@ -36,7 +34,7 @@ public class CarTransport extends Car {
     @Override
     public void move() {
         super.move();
-        for (Car c : loadedCars) {
+        for (CarTransportTransportable c : loadedObjects) {
             c.setPositionX(getPositionX());
             c.setPositionY(getPositionY());
         }
@@ -44,22 +42,22 @@ public class CarTransport extends Car {
     @Override
     public void setPositionX(double x) {
         super.setPositionX(x);
-        for (Car c : loadedCars) {
+        for (CarTransportTransportable c : loadedObjects) {
             c.setPositionX(x);
         }
     }
     @Override
     public void setPositionY(double y) {
         super.setPositionY(y);
-        for (Car c : loadedCars) {
+        for (CarTransportTransportable c : loadedObjects) {
             c.setPositionY(y);
         }
     }
 
 
-    void loadCar(Car car) {
+    void loadCar(CarTransportTransportable car) {
         boolean allowed = rampStatus == RampState.Down &&
-                          loadedCars.size() < capacity &&
+                          loadedObjects.size() < capacity &&
                           !(car instanceof CarTransport);
         if (!allowed) {
             return;
@@ -70,15 +68,16 @@ public class CarTransport extends Car {
         if (distance > minDistanceToLoad) {
             return;
         }
-        loadedCars.add(car);
+        loadedObjects.add(car);
     }
 
-    void unloadCar() {
+    CarTransportTransportable unloadCar() {
         if (rampStatus != RampState.Down) {
-            return;
+            return null;
         }
-        Car car = loadedCars.pop();
+        CarTransportTransportable car = loadedObjects.pop();
         car.setPositionX(getPositionX() + 5);
         car.setPositionY(getPositionY());
+        return car;
     }
 }

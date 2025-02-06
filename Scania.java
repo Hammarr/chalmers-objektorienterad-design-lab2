@@ -1,21 +1,23 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends TruckWithTrailer {
 
     double trailerDegree = 0;
 
     public Scania() {
-        super("Volvo", 2, 100, Color.GREEN);
+        super("Scania", 2, 100, Color.GREEN);
     }
 
     public void raise(double angle) {
         if (currentSpeed == 0) {
             this.trailerDegree = Math.min(70, angle + trailerDegree);
+            allowedToDrive = false;
         }
     }
     public void lower(double angle) {
         if (currentSpeed == 0) {
-            this.trailerDegree = Math.max(0, angle - trailerDegree);
+            this.trailerDegree = Math.max(0, trailerDegree - angle);
+            allowedToDrive = this.trailerDegree == 0;
         }
     }
     @Override
@@ -23,8 +25,8 @@ public class Scania extends Car {
         if(trailerDegree == 0){super.gas(amount);}
     }
     @Override
-    double speedFactor() {
+    public double speedFactor(){
         return enginePower * 0.01;
     }
-
 }
+
