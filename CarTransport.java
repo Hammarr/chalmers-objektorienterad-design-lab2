@@ -9,9 +9,10 @@ public class CarTransport extends TruckWithTrailer {
     private Stack<CarTransportTransportable> loadedObjects = new Stack<>();
     private final int capacity = 100;
     private final int minDistanceToLoad = 5;
+    private final int maxAllowedCarSize = 6;
 
     public CarTransport() {
-        super("Car Transport", 2, 80, Color.BLUE);
+        super("Car Transport", 2, 80, Color.BLUE, 10);
     }
 
     public void raise(){
@@ -57,8 +58,7 @@ public class CarTransport extends TruckWithTrailer {
 
     void loadCar(CarTransportTransportable car) {
         boolean allowed = rampStatus == RampState.Down &&
-                          loadedObjects.size() < capacity &&
-                          !(car instanceof CarTransport);
+                          loadedObjects.size() < capacity;
         if (!allowed) {
             return;
         }
