@@ -12,7 +12,7 @@ public class CarTransport extends TruckWithTrailer {
     private final int maxAllowedCarSize = 6;
 
     public CarTransport() {
-        super("Car Transport", 2, 80, Color.BLUE, 10);
+        super("Car Transport", 2, 80, Color.BLUE);
     }
 
     public void raise(){
