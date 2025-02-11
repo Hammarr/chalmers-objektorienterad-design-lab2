@@ -35,11 +35,11 @@ abstract class Vehicle implements Movable {
         return positionY;
     }
 
-    public void setPositionX(double x) {
+    protected void setPositionX(double x) {
         positionX = x;
     }
 
-    public void setPositionY(double y) {
+    protected void setPositionY(double y) {
         positionY = y;
     }
 

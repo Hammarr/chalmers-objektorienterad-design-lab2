@@ -36,29 +36,13 @@ public class CarTransport extends TruckWithTrailer {
     public void move() {
         super.move();
         for (CarTransportTransportable c : loadedObjects) {
-            c.setPositionX(getPositionX());
-            c.setPositionY(getPositionY());
+            c.transport(getPositionX(), getPositionY());
         }
     }
-    @Override
-    public void setPositionX(double x) {
-        super.setPositionX(x);
-        for (CarTransportTransportable c : loadedObjects) {
-            c.setPositionX(x);
-        }
-    }
-    @Override
-    public void setPositionY(double y) {
-        super.setPositionY(y);
-        for (CarTransportTransportable c : loadedObjects) {
-            c.setPositionY(y);
-        }
-    }
-
 
     void loadCar(CarTransportTransportable car) {
         boolean allowed = rampStatus == RampState.Down &&
-                          loadedObjects.size() < capacity;
+                          loadedObjects.size() < capacity && !car.getBeingTransported();
         if (!allowed) {
             return;
         }
@@ -69,6 +53,7 @@ public class CarTransport extends TruckWithTrailer {
             return;
         }
         loadedObjects.add(car);
+        car.setBeingTransported(true);
     }
 
     CarTransportTransportable unloadCar() {
@@ -76,8 +61,8 @@ public class CarTransport extends TruckWithTrailer {
             return null;
         }
         CarTransportTransportable car = loadedObjects.pop();
-        car.setPositionX(getPositionX() + 5);
-        car.setPositionY(getPositionY());
+        car.transport(getPositionX() + 5, getPositionY());
+        car.setBeingTransported(false);
         return car;
     }
 }

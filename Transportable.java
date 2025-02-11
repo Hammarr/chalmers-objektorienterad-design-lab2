@@ -1,6 +1,7 @@
 public interface Transportable {
-    void setPositionX(double x);
-    void setPositionY(double y);
+    void transport(double x, double y);
+    boolean getBeingTransported();
+    void setBeingTransported(boolean b);
     double getPositionX();
     double getPositionY();
 }
